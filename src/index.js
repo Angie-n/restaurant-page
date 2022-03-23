@@ -4,6 +4,7 @@ import homeIconSrc from "./assets/icons/brand.png";
 let contentDiv = document.getElementById("content");
 let baseColor = "rgb(164, 226, 245)";
 let lightGray = "rgb(220, 221, 222)";
+let darkBase = "rgb(77, 169, 201)";
 export {contentDiv, baseColor, lightGray}
 
 const body = (() => {
@@ -39,6 +40,7 @@ const navbar = (() => {
     linksul.style.display = "flex";
     linksul.style.justifyContent = "space-around";
     linksul.style.fontSize = "min(2em, 5vw)";
+    linksul.style.borderTop = "2px dotted " + lightGray;
     let home = document.createElement("li");
     home.innerText = "Home";
     let menu = document.createElement("li");
@@ -47,6 +49,26 @@ const navbar = (() => {
     contact.innerText = "Contact";
     linksul.append(home, menu, contact);
     let links = linksul.querySelectorAll("li");
+
+    function styleOpen(e) {
+        e.classList.add("open");
+        e.style.color = darkBase;
+        e.style.backgroundColor = "white";
+        e.onmouseover = "";
+        e.onmouseout = "";
+    }
+
+    function styleUnopen(e) {
+        e.classList.remove("open");
+        e.style.color = "black";
+        e.onmouseover = () => {e.style.backgroundColor = lightGray};
+        e.onmouseout = () => {e.style.backgroundColor = "white"};
+    }
+
+    function switchStyle(e) {
+        if(e.classList.contains("open")) styleUnopen(e);
+        else styleOpen(e);
+    }
     
     links.forEach(e => {
         let a = document.createElement("a");
@@ -54,10 +76,14 @@ const navbar = (() => {
         e.style.padding = "10px";
         e.style.width = "100%";
         e.style.textAlign = "center";
-        e.style.borderTop = "3px dotted";
-        e.style.borderColor = lightGray;
-        e.onmouseover = () => {e.style.backgroundColor = lightGray};
-        e.onmouseout = () => {e.style.backgroundColor = "white"};
+        if(e != home) {styleUnopen(e);}
+        else styleOpen(e);
+        e.onclick = () => {
+            if(!e.classList.contains("open")) {
+                links.forEach(e => {if(e.classList.contains("open"))switchStyle(e);});
+                switchStyle(e);
+            }
+        }
     });
 
     container.append(nameDiv, linksul);
