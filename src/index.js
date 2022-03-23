@@ -8,7 +8,7 @@ let contentDiv = document.getElementById("content");
 let baseColor = "rgb(164, 226, 245)";
 let lightGray = "rgb(220, 221, 222)";
 let darkBase = "rgb(77, 169, 201)";
-export {body, contentDiv, baseColor, lightGray, navbar}
+export {contentDiv, baseColor, lightGray, navbar}
 
 const bodyStyle = (() => {
     body.style.backgroundColor = baseColor;
