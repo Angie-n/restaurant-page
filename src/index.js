@@ -1,14 +1,16 @@
 import * as homeModule from "./home.js";
+import * as menuModule from "./menu.js";
+import * as contactModule from "./contact.js";
 import homeIconSrc from "./assets/icons/brand.png";
 
+let body = document.getElementsByTagName("BODY")[0];
 let contentDiv = document.getElementById("content");
 let baseColor = "rgb(164, 226, 245)";
 let lightGray = "rgb(220, 221, 222)";
 let darkBase = "rgb(77, 169, 201)";
-export {contentDiv, baseColor, lightGray}
+export {body, contentDiv, baseColor, lightGray, navbar}
 
-const body = (() => {
-    let body = document.getElementsByTagName("BODY")[0];
+const bodyStyle = (() => {
     body.style.backgroundColor = baseColor;
     body.style.fontFamily = "Didot, Georgia";
     body.style.fontSize = "10px";
@@ -17,9 +19,10 @@ const body = (() => {
 
 const navbar = (() => {
     let container = document.createElement("div");
+    container.id = "nav";
     container.style.backgroundColor = "white";
     container.style.width = "100vw";
-    contentDiv.appendChild(container);
+    body.insertBefore(container, contentDiv);
     
     let nameDiv = document.createElement("div");
     nameDiv.style.display = "flex";
@@ -45,6 +48,7 @@ const navbar = (() => {
     home.innerText = "Home";
     let menu = document.createElement("li");
     menu.innerText = "Menu";
+    menu.id = "navMenu";
     let contact = document.createElement("li");
     contact.innerText = "Contact";
     linksul.append(home, menu, contact);
@@ -66,8 +70,17 @@ const navbar = (() => {
     }
 
     function switchStyle(e) {
-        if(e.classList.contains("open")) styleUnopen(e);
-        else styleOpen(e);
+        links.forEach(e => {
+            if(e.classList.contains("open"))styleUnopen(e);
+        });
+        styleOpen(e);
+    }
+
+    function switchContent(e) {
+        contentDiv.innerHTML = "";
+        if(e == home) homeModule.content();
+        else if (e == contact) contactModule.content();
+        else menuModule.content();
     }
     
     links.forEach(e => {
@@ -80,13 +93,13 @@ const navbar = (() => {
         else styleOpen(e);
         e.onclick = () => {
             if(!e.classList.contains("open")) {
-                links.forEach(e => {if(e.classList.contains("open"))switchStyle(e);});
                 switchStyle(e);
+                switchContent(e);
             }
         }
     });
-
     container.append(nameDiv, linksul);
+    return {switchStyle, switchContent}
 })();
 
 homeModule.content();

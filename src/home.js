@@ -1,4 +1,4 @@
-import {contentDiv, baseColor, lightGray} from "./index.js";
+import {body, contentDiv, baseColor, lightGray, navbar} from "./index.js";
 
 import homeImgSrc from "./assets/images/kibble.jpg";
 import pawIconSrc from "./assets/icons/paws.png";
@@ -20,11 +20,11 @@ function content() {
         let homeImg = new Image();
         homeImg.src = homeImgSrc;
         homeImg.style.width = "100vw";
-        homeImg.style.height = "calc(100vh - " + contentDiv.firstChild.offsetHeight + "px)";
+        homeImg.style.height = "calc(100vh - " + document.getElementById("nav").clientHeight + "px)";
         homeImg.style.objectFit = "cover";
 
         let homeImgText = document.createElement("div");
-        homeImgText.style.height = "calc(100vh - " + contentDiv.firstChild.offsetHeight + "px)";
+        homeImgText.style.height = "calc(100vh - " + document.getElementById("nav").clientHeight + "px)";
         homeImgText.style.width = "100vw";
         homeImgText.style.backgroundColor = "rgba(0,0,0, 0.2)";
         homeImgText.style.display = "flex";
@@ -37,7 +37,7 @@ function content() {
         homeImgText.style.color = "white";
         
         let imgTitle = document.createElement("h2");
-        imgTitle.innerHTML = "<span style='font-family: Didot,Georgia; font-weight: 100;'>Super Taste Freed From Super Vision</span>";
+        imgTitle.innerHTML = "<span style='font-family: Didot,Georgia; font-weight: 100;'>Super Taste Without Supervision</span>";
 
         let btnDiv = document.createElement("div");
         btnDiv.style.position = "relative";
@@ -104,6 +104,12 @@ function content() {
             ribbonIcon.style.display = "none";
             boneCircles.forEach(e => {e.style.backgroundColor = "white"})
         }     
+        imgBtn.onclick = () => {
+            let menu = document.getElementById("navMenu");
+            navbar.switchStyle(menu);
+            navbar.switchContent(menu);
+        }
+        
         btnDiv.append(imgBtn);
 
         homeImgText.append(imgTitle, btnDiv);
