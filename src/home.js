@@ -1,4 +1,4 @@
-import {body, contentDiv, baseColor, lightGray, navbar} from "./index.js";
+import {contentDiv, lightGray, navbar, createBlackScreen} from "./index.js";
 
 import homeImgSrc from "./assets/images/kibble.jpg";
 import pawIconSrc from "./assets/icons/paws.png";
@@ -23,18 +23,7 @@ function content() {
         homeImg.style.height = "calc(100vh - " + document.getElementById("nav").clientHeight + "px)";
         homeImg.style.objectFit = "cover";
 
-        let homeImgText = document.createElement("div");
-        homeImgText.style.height = "calc(100vh - " + document.getElementById("nav").clientHeight + "px)";
-        homeImgText.style.width = "100vw";
-        homeImgText.style.backgroundColor = "rgba(0,0,0, 0.2)";
-        homeImgText.style.display = "flex";
-        homeImgText.style.flexDirection = "column";
-        homeImgText.style.justifyContent = "center";
-        homeImgText.style.alignItems = "center";
-        homeImgText.style.position = "absolute";
-        homeImgText.style.top = "0";
-        homeImgText.style.left = "0";
-        homeImgText.style.color = "white";
+        let homeImgText = createBlackScreen("calc(100vh - " + document.getElementById("nav").clientHeight + "px)", "100vw", "0.2");
         
         let imgTitle = document.createElement("h2");
         imgTitle.innerHTML = "<span style='font-family: Didot,Georgia; font-weight: 100;'>Super Taste Without Supervision</span>";
