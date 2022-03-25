@@ -8,7 +8,7 @@ let contentDiv = document.getElementById("content");
 let baseColor = "rgb(164, 226, 245)";
 let lightGray = "rgb(220, 221, 222)";
 let darkBase = "rgb(77, 169, 201)";
-export {contentDiv, baseColor, lightGray, navbar}
+export {contentDiv, baseColor, lightGray, navbar, createBlackScreen}
 
 const bodyStyle = (() => {
     body.style.backgroundColor = baseColor;
@@ -101,6 +101,22 @@ const navbar = (() => {
     container.append(nameDiv, linksul);
     return {switchStyle, switchContent}
 })();
+
+const createBlackScreen = (heightSize, widthSize, opacity) => {
+    let blackScreen = document.createElement("div");
+    blackScreen.style.height = heightSize;
+    blackScreen.style.width = widthSize;
+    blackScreen.style.backgroundColor = "rgba(0,0,0," + opacity + ")";
+    blackScreen.style.display = "flex";
+    blackScreen.style.flexDirection = "column";
+    blackScreen.style.justifyContent = "center";
+    blackScreen.style.alignItems = "center";
+    blackScreen.style.position = "absolute";
+    blackScreen.style.top = "0";
+    blackScreen.style.left = "0";
+    blackScreen.style.color = "white";
+    return blackScreen;
+}
 
 homeModule.content();
 
