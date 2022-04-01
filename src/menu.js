@@ -73,27 +73,40 @@ function content() {
                 s.style.boxShadow = "2px 2px 5px black";
                 s.style.borderRadius = "20px";
 
-                const enterAnimation = () => {
-                    let start = Date.now();
-                    let timer = setInterval(() => {
+                const enterAnimation = (entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            let start = Date.now();
+                        let timer = setInterval(() => {
                         let timePassed = Date.now() - start;
                         if(timePassed >= 1000) {
                             clearInterval(timer);
                             return;
                         }
                         showDescription(timePassed);
-                    })
+                        })
 
-                    function showDescription(timePassed) {
-                        m.style.height = timePassed/25 + 20 + "px";
-                        m.style.color = "rgba(256, 256, 256, " + 0.001*timePassed + ")";
-                    } 
-                    m.style.padding = "5px";
+                        function showDescription(timePassed) {
+                            m.style.height = timePassed/25 + 20 + "px";
+                            m.style.color = "rgba(256, 256, 256, " + 0.001*timePassed + ")";
+                        } 
+                        m.style.padding = "5px";
+                        observer.unobserve(s);
+                        }
+                    });
                 }
+
+                let options = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.9
+                }
+
+                let observer = new IntersectionObserver(enterAnimation, options);
+                observer.observe(s);
 
                 s.onmouseenter = () => {
                     s.style.boxShadow = "10px 10px 15px black";
-                    if(m.offsetHeight == 0) enterAnimation();
                 }
 
                 s.onmouseleave = () => {
