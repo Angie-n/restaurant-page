@@ -1,4 +1,4 @@
-import {contentDiv, baseColor, darkBase, generalStylings} from "./index.js";
+import {contentDiv, baseColor, darkBase, generalStylings, createFooter} from "./index.js";
 import locationImgSrc from "./assets/images/location.jpg";
 import chefImgSrc from "./assets/images/chef.jpg";
 
@@ -85,6 +85,11 @@ function content() {
         resizeContainer();
         generalStylings();
         title.style.margin = "0";
+    })();
+
+    const footer = (() => {
+        let attributions = ["<a href='https://www.freepik.com/photos/cutlery'>Cutlery photo created by master1305 - www.freepik.com</a>", "<a href='https://www.freepik.com/photos/home-decor'>Home decor photo created by vanitjan - www.freepik.com</a>"];
+        createFooter(attributions);
     })();
 }
 

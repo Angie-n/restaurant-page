@@ -1,4 +1,4 @@
-import {contentDiv} from "./index.js";
+import {contentDiv, createFooter} from "./index.js";
 import kibbleImgSrc from "./assets/images/kibble-with-paws.jpg";
 import grassImgSrc from "./assets/images/grass.jpg";
 import meatImgSrc from "./assets/images/meat.jpg";
@@ -144,7 +144,11 @@ function content() {
         menuArr.forEach(e => {
             e.addToDOM();
         });
+    })();
 
+    const footer = (() => {
+        let attributions = [];
+        createFooter(attributions);
     })();
 }
 

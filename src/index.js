@@ -119,6 +119,24 @@ const createBlackScreen = (heightSize, widthSize, opacity) => {
     return blackScreen;
 }
 
+const createFooter = (attributions) => {
+    let div = document.createElement("div");
+    div.style.minHeight = "100px";
+    div.style.width = "100vw";
+    div.style.backgroundColor = "rgb(50, 50, 50)";
+    div.style.color = "white";
+    div.style.textAlign = "center";
+    div.innerHTML = "<h2 style='margin:0; padding-top: 5px;'>Attributions</h2>" + '<a href="https://www.flaticon.com/free-icons/dog" title="dog icons">Dog icons created by Freepik - Flaticon</a>';
+    attributions.forEach((attr) => {
+        div.innerHTML += "<br>" + attr;
+    });
+    let links = div.getElementsByTagName("a");
+    Array.prototype.forEach.call(links, e => {
+        e.style.color = "white";
+    });
+    contentDiv.append(div);
+}
+
 const generalStylings = () => {
     let generalH2 = document.getElementsByClassName("generalH2");
     Array.prototype.forEach.call(generalH2, e => {
@@ -144,4 +162,4 @@ const generalStylings = () => {
 
 homeModule.content();
 
-export {contentDiv, baseColor, darkBase, lightGray, navbar, createBlackScreen, generalStylings}
+export {contentDiv, baseColor, darkBase, lightGray, navbar, createBlackScreen, createFooter, generalStylings}

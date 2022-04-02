@@ -1,4 +1,4 @@
-import {contentDiv, lightGray, navbar, createBlackScreen, generalStylings} from "./index.js";
+import {contentDiv, lightGray, navbar, createBlackScreen, generalStylings, createFooter} from "./index.js";
 
 import homeImgSrc from "./assets/images/kibble.jpg";
 import pawIconSrc from "./assets/icons/paws.png";
@@ -162,6 +162,11 @@ function content() {
             e.style.zIndex = "1";
         });
         generalStylings();
+    })();
+
+    const footer = (() => {
+        let attributions = ["<a href='https://www.freepik.com/photos/pet-accessories'>Pet accessories photo created by freepik - www.freepik.com</a>", '<a href="https://www.flaticon.com/free-icons/paw" title="paw icons">Paw icons created by Creatype - Flaticon</a>', '<a href="https://www.flaticon.com/free-icons/ribbon" title="ribbon icons">Ribbon icons created by Freepik - Flaticon</a>'];
+        createFooter(attributions);
     })();
 }
 
