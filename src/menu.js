@@ -1,5 +1,4 @@
-import {contentDiv, baseColor, lightGray, createBlackScreen} from "./index.js";
-import boneIconSrc from "./assets/icons/bone.png";
+import {contentDiv} from "./index.js";
 import kibbleImgSrc from "./assets/images/kibble-with-paws.jpg";
 import grassImgSrc from "./assets/images/grass.jpg";
 import meatImgSrc from "./assets/images/meat.jpg";
@@ -23,39 +22,6 @@ function content() {
 
         resizeContainer();
         window.addEventListener("resize", e => {resizeContainer()});
-
-        const menuHeader = (text) => {
-            let background = boneIconSrc;
-
-            const styleDiv = (d) => {
-                d.style.position = "relative";
-                d.style.height = "100px";
-                d.style.display = "flex";
-                d.style.justifyContent = "center";
-            }
-
-            const styleImg = (i) => {
-                i.style.position = "absolute";
-                i.style.height = "100px";
-                i.style.width = "300px";
-                i.style.margin = "auto";
-
-            }
-
-            const addToDOM = () => {
-                let div = document.createElement("div");
-                styleDiv(div);
-                let headerImg = new Image();
-                headerImg.src = background;
-                styleImg(headerImg);
-                let header = document.createElement("h2");
-                header.textContent = text;
-                div.append(header, headerImg);
-                contentDiv.insertBefore(div, container);
-            }
-
-            return {addToDOM};
-        }
 
         const menuItem = (name, image, description) => {
 
