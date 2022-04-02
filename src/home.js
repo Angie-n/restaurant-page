@@ -1,4 +1,4 @@
-import {contentDiv, lightGray, navbar, createBlackScreen} from "./index.js";
+import {contentDiv, lightGray, navbar, createBlackScreen, generalStylings} from "./index.js";
 
 import homeImgSrc from "./assets/images/kibble.jpg";
 import pawIconSrc from "./assets/icons/paws.png";
@@ -150,21 +150,18 @@ function content() {
 
         let h2 = document.querySelectorAll("h2");
         h2.forEach(e => {
+            e.classList.add("generalH2");
             e.style.position = "relative";
-            e.style.fontFamily = "cursive";
-            e.style.fontSize = "3.8em";
-            e.style.textAlign = "center";
-            e.style.margin = "10px";
             e.style.zIndex = "1";
         });
 
         let p = document.querySelectorAll("p");
         p.forEach(e => {
+            e.classList.add("generalP");
             e.style.position = "relative";
-            e.style.fontSize = "1.6em";
-            e.style.textAlign = "center";
             e.style.zIndex = "1";
         });
+        generalStylings();
     })();
 }
 

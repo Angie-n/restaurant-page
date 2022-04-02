@@ -8,7 +8,6 @@ let contentDiv = document.getElementById("content");
 let baseColor = "rgb(164, 226, 245)";
 let lightGray = "rgb(220, 221, 222)";
 let darkBase = "rgb(77, 169, 201)";
-export {contentDiv, baseColor, lightGray, navbar, createBlackScreen}
 
 const bodyStyle = (() => {
     body.style.backgroundColor = baseColor;
@@ -40,6 +39,7 @@ const navbar = (() => {
     nameDiv.append(homeIcon, nameTitle);
     
     let linksul = document.createElement("ul");
+    linksul.classList.add("generalUl");
     linksul.style.display = "flex";
     linksul.style.justifyContent = "space-around";
     linksul.style.fontSize = "min(2em, 5vw)";
@@ -102,6 +102,7 @@ const navbar = (() => {
     return {switchStyle, switchContent}
 })();
 
+//container it is appended to should be position relative.
 const createBlackScreen = (heightSize, widthSize, opacity) => {
     let blackScreen = document.createElement("div");
     blackScreen.style.height = heightSize;
@@ -118,14 +119,29 @@ const createBlackScreen = (heightSize, widthSize, opacity) => {
     return blackScreen;
 }
 
-homeModule.content();
+const generalStylings = () => {
+    let generalH2 = document.getElementsByClassName("generalH2");
+    Array.prototype.forEach.call(generalH2, e => {
+        e.style.fontFamily = "cursive";
+        e.style.fontSize = "3.8em";
+        e.style.textAlign = "center";
+        e.style.margin = "10px";
+    });
 
-const listSelector = (() => {
-    let lists = document.querySelectorAll("ul");
-    lists.forEach(e => {
+    let generalP = document.getElementsByClassName("generalP");
+    Array.prototype.forEach.call(generalP, e => {
+        e.style.fontSize = "1.6em";
+        e.style.textAlign = "center";
+    });
+
+    let generalUl = document.getElementsByClassName("generalUl");
+    Array.prototype.forEach.call(generalUl, e => {
         e.style.listStyle = "none";
         e.style.padding = "0";
         e.style.margin = "0";
     });
-})();
+};
 
+homeModule.content();
+
+export {contentDiv, baseColor, darkBase, lightGray, navbar, createBlackScreen, generalStylings}
